@@ -36,7 +36,6 @@ export class Http extends BaseHttp {
     return this.call<T>({
       ...request,
       body: JSON.stringify(request.body),
-
       method: "PATCH",
     });
   };

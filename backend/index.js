@@ -1,18 +1,16 @@
 import http from "node:http";
 import express from "express";
+import { router } from "./router.js";
 
 const app = express();
 
 app.use(express.json());
 
-app.use((req,res,next)=>{
-  setTimeout(next, 500)
-})
-
-app.get("/todos", (_, res) => {
-  const todos = [{ id: 1, userId: 1, title: "Todo title", body: "Todo body" }];
-  return res.json(todos).end();
+app.use((req, res, next) => {
+  setTimeout(next, 500);
 });
+
+app.use(router);
 
 const server = new http.Server(app);
 

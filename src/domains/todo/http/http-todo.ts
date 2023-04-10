@@ -3,9 +3,19 @@ import { ITodo } from "./http-todo.types";
 
 class HttpTodo extends Http {
   @queryKey(() => ["todos"])
-  public static todos = async () => {
+  public static todos = async (signal?: AbortSignal) => {
     const url = "/api/todos";
-    return this.get<ITodo[]>({ url });
+
+    return this.get<ITodo[]>({ url, signal });
+  };
+
+  @queryKey((todoId: number) => ["todo_complete", { todoId }])
+  public static complete = async (todoId: number, signal?: AbortSignal) => {
+    const url = `/api/todos/${todoId}/complete`;
+
+    const body = { complete: true };
+
+    return this.patch<ITodo>({ url, body });
   };
 }
 

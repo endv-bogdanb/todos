@@ -1,9 +1,9 @@
 import { Http } from "./http";
 
-export interface BaseHttpRequest extends RequestInit {
+export interface BaseHttpRequest extends Omit<RequestInit, "body"> {
   url: URL | string;
   timeout?: number;
-  body?: XMLHttpRequestBodyInit;
+  body?: Blob | FormData | string | Object;
   method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
   onProgress?: (ctx: {
     percentage: number;

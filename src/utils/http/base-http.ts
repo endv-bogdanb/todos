@@ -123,7 +123,7 @@ export class BaseHttp {
           }
         };
 
-        xhr.send(body);
+        xhr.send(body as XMLHttpRequestBodyInit);
       } catch (error) {
         reject(HttpError.toHttpError(error));
       }
