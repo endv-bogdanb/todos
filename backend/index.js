@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 
 app.use((req,res,next)=>{
-  setTimeout(next, 1500)
+  setTimeout(next, 500)
 })
 
 app.get("/todos", (_, res) => {

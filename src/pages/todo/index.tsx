@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { HttpTodo } from "../../domains/todo/http";
 import { HttpError } from "../../utils";
-import { Error } from "../../components";
+import { Error, Loading } from "../../components";
 
 export const TodoPage: FC = () => {
   const {
@@ -17,7 +17,7 @@ export const TodoPage: FC = () => {
   });
 
   if (state.isLoading) {
-    return <progress></progress>;
+    return <Loading />;
   }
 
   if (state.isError) {

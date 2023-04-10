@@ -1,13 +1,14 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { FC } from "react";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { FC, ReactNode } from "react";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router";
+import { queryClient } from "./queryClient";
 
-export const queryClient = new QueryClient();
-
-export const RootProviders: FC<{ children: ReactNode }> = ({ children }) => {
+export const RootProviders: FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
+      <RouterProvider router={router} />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
