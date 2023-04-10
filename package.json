@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "remove": "^0.1.5"
   },
   "devDependencies": {
+    "@tanstack/react-query": "4.29.1",
+    "@tanstack/react-query-devtools": "4.29.1",
     "@types/react": "18.0.34",
     "@types/react-dom": "18.0.11",
     "@vitejs/plugin-react-swc": "3.3.0",

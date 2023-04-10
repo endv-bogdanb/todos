@@ -5,6 +5,10 @@ const app = express();
 
 app.use(express.json());
 
+app.use((req,res,next)=>{
+  setTimeout(next, 1500)
+})
+
 app.get("/todos", (_, res) => {
   const todos = [{ id: 1, userId: 1, title: "Todo title", body: "Todo body" }];
   return res.json(todos).end();
