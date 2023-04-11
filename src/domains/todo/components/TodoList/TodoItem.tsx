@@ -1,9 +1,8 @@
 import { FC, MouseEvent, useCallback } from "react";
 import clsx from "clsx";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { HttpTodo, ITodo } from "../../http";
 import { HttpError } from "../../../../utils";
-import { queryClient } from "../../../../utils/queryClient";
 import classes from "./styles.module.css";
 
 export interface ITodoItem {
@@ -12,6 +11,8 @@ export interface ITodoItem {
 }
 
 export const TodoItem: FC<ITodoItem> = ({ todo, onClick }) => {
+  const queryClient = useQueryClient();
+
   const completeTodo = useMutation({
     mutationFn: HttpTodo.complete,
     mutationKey: HttpTodo.complete.queryKey(todo.id),

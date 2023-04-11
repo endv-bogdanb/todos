@@ -45,7 +45,6 @@ export class BaseHttp {
 
         xhr.onerror = () => {
           handled = true;
-          console.log("onerror");
           const error = new HttpError(
             `Unexpected error occured`,
             "Unknown",

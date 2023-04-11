@@ -9,6 +9,18 @@ class HttpTodo extends Http {
     return this.get<ITodo[]>({ url, signal });
   };
 
+  @queryKey(() => ["todo_create"])
+  public static create = async (
+    todo: Pick<ITodo, "title" | "completed">,
+    signal?: AbortSignal
+  ) => {
+    const url = `/api/todos`;
+
+    const body = { ...todo, userId: 1 };
+
+    return this.post<ITodo>({ url, body });
+  };
+
   @queryKey((todoId: number) => ["todo_complete", { todoId }])
   public static complete = async (todoId: number, signal?: AbortSignal) => {
     const url = `/api/todos/${todoId}/complete`;
