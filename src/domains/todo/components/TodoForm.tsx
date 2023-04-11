@@ -1,20 +1,19 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
-import { Checbox, Input, Submit } from "../../../components";
+import { Checbox, Input, Select, Submit } from "../../../components";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { HttpTodo, ITodo } from "../http";
 import { HttpError } from "../../../utils";
 
 export interface ITodoForm {}
 
-interface TodoFormValues {
-  title: string;
-  completed: boolean;
-}
+interface TodoFormValues extends Pick<ITodo, "title" | "completed" | "rank"> {}
 
 export const TodoForm: FC<ITodoForm> = () => {
   const queryClient = useQueryClient();
-  const { handleSubmit, control, reset } = useForm<TodoFormValues>();
+  const { handleSubmit, control, reset } = useForm<TodoFormValues>({
+    defaultValues: { rank: "medium" },
+  });
 
   const createTodo = useMutation({
     mutationFn: HttpTodo.create,
@@ -27,7 +26,7 @@ export const TodoForm: FC<ITodoForm> = () => {
       const prevTodos = queryClient.getQueryData<ITodo[]>(queryKey);
 
       queryClient.setQueryData<ITodo[]>(queryKey, (old = []) => [
-        { ...todo, id: Date.now(), userId: 1 },
+        { ...todo, id: Date.now(), userId: 1, createdAt: "" },
         ...old,
       ]);
 
@@ -56,6 +55,11 @@ export const TodoForm: FC<ITodoForm> = () => {
     >
       <Input label="Title" name="title" control={control} />
       <Checbox label="Completed" name="completed" control={control} />
+      <Select label="Rank" name="rank" control={control}>
+        <option value="low">low</option>
+        <option value="medium">medium</option>
+        <option value="high">high</option>
+      </Select>
       <Submit label="Add" control={control} disabled={createTodo.isLoading} />
     </form>
   );

@@ -3,4 +3,6 @@ export interface ITodo {
   userId: number;
   title: string;
   completed: boolean;
+  createdAt: string;
+  rank: "low" | "high" | "medium";
 }

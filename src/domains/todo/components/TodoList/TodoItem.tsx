@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { HttpTodo, ITodo } from "../../http";
 import { HttpError } from "../../../../utils";
 import classes from "./styles.module.css";
+import { UnicodeService } from "../../../../services";
 
 export interface ITodoItem {
   todo: ITodo;
@@ -63,6 +64,8 @@ export const TodoItem: FC<ITodoItem> = ({ todo, onClick }) => {
         className={clsx({ [`${classes.clickable}`]: !todo.completed })}
         onClick={handleOnClick}
       >
+        {todo.rank === "high" ? UnicodeService.ARROW_UP : null}
+        {todo.rank === "low" ? UnicodeService.ARROW_DOWN : null}
         {todo.completed ? <del>{todo.title}</del> : <span>{todo.title}</span>}
       </li>
     </>

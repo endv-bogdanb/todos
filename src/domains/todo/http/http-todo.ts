@@ -11,7 +11,7 @@ class HttpTodo extends Http {
 
   @queryKey(() => ["todo_create"])
   public static create = async (
-    todo: Pick<ITodo, "title" | "completed">,
+    todo: Pick<ITodo, "title" | "completed" | "rank">,
     signal?: AbortSignal
   ) => {
     const url = `/api/todos`;
