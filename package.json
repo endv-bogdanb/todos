@@ -1,0 +1,23 @@
+{
+  "name": "todos",
+  "workspaces": [
+    "apps/*",
+    "configs/*"
+  ],
+  "scripts": {
+    "dev": "turbo dev build:watch",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "update": "ncu --root --workspaces --interactive"
+  },
+  "devDependencies": {
+    "@types/node": "20.13.0",
+    "concurrently": "8.2.2",
+    "eslint-config-custom": "0.0.0",
+    "npm-check-updates": "16.14.20",
+    "turbo": "1.13.3"
+  },
+  "volta": {
+    "node": "22.2.0"
+  }
+}

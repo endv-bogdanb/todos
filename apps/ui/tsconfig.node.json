@@ -1,0 +1,10 @@
+{
+  "extends": "tsconfig/base.json",
+  "compilerOptions": {
+    "composite": true,
+    "moduleResolution": "bundler",
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+  },
+  "include": ["vite.config.ts"]
+}
