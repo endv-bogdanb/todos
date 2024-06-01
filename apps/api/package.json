@@ -1,0 +1,15 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch dist",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "lint": "eslint . --report-unused-disable-directives --max-warnings 0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "tsconfig": "0.0.0"
+  }
+}
