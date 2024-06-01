@@ -2,7 +2,9 @@
   "extends": "tsconfig/vite.json",
   "compilerOptions": {
     "paths": {
-      "@/pages": ["./src/pages"]
+      "@/pages": ["./src/pages"],
+      "@/http": ["./src/http"],
+      "@/utils": ["./src/utils"]
     }
   },
   "include": ["src"],

@@ -1,9 +1,17 @@
-import { type RouteObject } from "react-router-dom";
-import { App } from "../App";
+import { createBrowserRouter, type RouteObject } from "react-router-dom";
+import { homeRoutes } from "./home";
+import { NavLayout } from "./Nav.layout";
+import { todoRoutes } from "./todos";
 
-export const routes: RouteObject[] = [
+export type * from "./home";
+export type * from "./todos";
+
+const routes: RouteObject[] = [
   {
-    element: <App />,
+    children: [homeRoutes, todoRoutes],
+    element: <NavLayout />,
     path: "/",
   },
 ];
+
+export const router = createBrowserRouter(routes);
