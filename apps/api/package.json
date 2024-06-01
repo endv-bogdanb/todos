@@ -13,13 +13,16 @@
     "test": "vitest"
   },
   "dependencies": {
+    "better-sqlite3": "11.0.0",
     "cookie-parser": "1.4.6",
     "env-var": "7.5.0",
     "express": "4.19.2",
     "express-promise-router": "4.1.1",
-    "http-status": "1.7.4"
+    "http-status": "1.7.4",
+    "kysely": "0.27.3"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "7.6.10",
     "@types/cookie-parser": "1.4.7",
     "@types/express": "4.17.21",
     "tsconfig": "0.0.0"

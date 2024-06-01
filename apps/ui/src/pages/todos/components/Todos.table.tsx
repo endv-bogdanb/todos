@@ -14,7 +14,9 @@ const columnHelper = createColumnHelper<TodosColumnHelper>();
 
 const columns = [
   columnHelper.accessor("title", {
-    cell: (props) => <Link to={props.row.id}>{props.renderValue()}</Link>,
+    cell: (props) => (
+      <Link to={`${props.row.original.id}`}>{props.renderValue()}</Link>
+    ),
   }),
   columnHelper.accessor("description", {}),
 ];
