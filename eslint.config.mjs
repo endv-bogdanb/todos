@@ -25,6 +25,9 @@ export const baseRules = {
   "no-console": "error",
   "sort-imports": "off",
   "func-style": "off",
+  "sort-vars": "off",
+  "one-var": "off",
+  "id-length": ["error", { "exceptions": ["_"] }],
   ...prettierConfig.rules,
   "prettier/prettier": "error",
 };
@@ -39,6 +42,7 @@ const typescriptRules = {
   ...typescriptEslintPlugin.configs["strict-type-checked"].rules,
   ...typescriptEslintPlugin.configs["stylistic-type-checked"].rules,
   ...typescriptSortKeysPlugin.configs.recommended.rules,
+  "@typescript-eslint/restrict-template-expressions": "off",
   "canonical/sort-keys": [
     2,
     "asc",
@@ -66,6 +70,7 @@ const importRules = {
           "^vitest",
           "^node:",
           "^react",
+          "^express",
           "^@?\\w",
           "^",
           "^\\.\\./+",
