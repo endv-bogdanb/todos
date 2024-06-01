@@ -85,6 +85,7 @@ const config = [
   {
     // ui app
     files: ["apps/ui/src/**/*.{ts,tsx}"],
+    ignores: ["apps/ui/src/**/*.test.{ts,tsx}"],
     languageOptions: {
       parser: typescriptEslintParser,
       parserOptions: {
@@ -113,6 +114,7 @@ const config = [
   {
     // api app
     files: ["apps/api/src/**/*.ts"],
+    ignores: ["apps/api/src/**/*.test.ts"],
     languageOptions: {
       parser: typescriptEslintParser,
       parserOptions: {
@@ -134,7 +136,7 @@ const config = [
       ...typescriptRules,
       ...importRules,
     },
-  }
+  },
 ];
 
 export default config;
