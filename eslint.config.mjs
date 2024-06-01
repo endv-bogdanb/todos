@@ -157,6 +157,7 @@ const config = [
       ...baseRules,
       ...typescriptRules,
       ...importRules,
+      "@typescript-eslint/no-misused-promises": "off"
     },
   },
 ];

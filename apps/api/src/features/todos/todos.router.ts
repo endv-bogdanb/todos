@@ -1,48 +1,33 @@
 import promiseRouter from "express-promise-router";
 import httpStatus from "http-status";
+import { db } from "@/database";
 
 const router = promiseRouter();
 
-router.route("/todos").get((_, res) => {
-  return res
-    .status(httpStatus.OK)
-    .send([
-      {
-        description: "todo description",
-        id: 0,
-        title: "Todo",
-      },
-      {
-        description: "todo description",
-        id: 1,
-        title: "Todo 1",
-      },
-      {
-        description: "todo description",
-        id: 2,
-        title: "Todo 2",
-      },
-      {
-        description: "todo description",
-        id: 3,
-        title: "Todo 3",
-      },
-    ])
-    .end();
+router.route("/todos").get(async (_, res) => {
+  const todos = await db
+    .selectFrom("todo")
+    .select(["id", "description", "title"])
+    .execute();
+
+  return res.status(httpStatus.OK).send(todos).end();
 });
 
-router.route("/todos/:id").get((_, res) => {
-  return res
-    .status(httpStatus.OK)
-    .send({
-      createdAt: new Date(),
-      description: "todo description",
-      id: 3,
-      rank: "high",
-      title: "Todo 3",
-      updatedAt: new Date(),
-    })
-    .end();
+router.route("/todos/:id").get(async (req, res) => {
+  const todo = await db
+    .selectFrom("todo")
+    .select([
+      "id",
+      "created_at as createdAt",
+      "description",
+      "rank",
+      "title",
+      "updated_at as updatedAt",
+    ])
+    .where("id", "=", Number(req.params.id))
+    .executeTakeFirstOrThrow();
+
+  return res.status(httpStatus.OK).send(todo).end();
 });
 
 export default router;
