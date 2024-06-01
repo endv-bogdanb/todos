@@ -1,2 +1,2 @@
 export * from "./health/index.js";
-export * from "./todo/index.js";
+export * from "./todos/index.js";
