@@ -30,3 +30,16 @@ export async function queryTodos({
 }
 
 queryTodos.queryKey = ["todos"] as const;
+
+export async function createTodo(todo: {
+  description: string;
+  rank: "low" | "high";
+  title: string;
+}) {
+  return api("/api/todos", {
+    body: JSON.stringify(todo),
+    method: "POST",
+  });
+}
+
+createTodo.mutationKey = ["createTodo"] as const;

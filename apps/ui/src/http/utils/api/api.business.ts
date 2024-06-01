@@ -17,7 +17,11 @@ export const call = async (
     abortController.abort();
   });
 
-  return fetch(input, { ...init, signal: abortController.signal });
+  return fetch(input, {
+    ...init,
+    headers: { ...init.headers, "content-type": "application/json" },
+    signal: abortController.signal,
+  });
 };
 
 export const parse = async (response: Response) => {
@@ -28,7 +32,6 @@ export const parse = async (response: Response) => {
 
   if (isText || isJson) {
     const text = await blob.text();
-    // eslint-disable-next-line no-ternary
     return isJson ? (JSON.parse(text) as unknown) : text;
   }
 
