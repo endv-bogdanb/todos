@@ -9,6 +9,8 @@ import reactRefreshPlugin from "eslint-plugin-react-refresh";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import prettierPlugin from "eslint-plugin-prettier";
 import prettierConfig from "eslint-config-prettier";
+import typescriptSortKeysPlugin from "eslint-plugin-typescript-sort-keys";
+import canonicalPlugin from "eslint-plugin-canonical";
 
 const root = dirname(fileURLToPath(import.meta.url));
 
@@ -36,6 +38,15 @@ const typescriptRules = {
   ...typescriptEslintPlugin.configs.strict.rules,
   ...typescriptEslintPlugin.configs["strict-type-checked"].rules,
   ...typescriptEslintPlugin.configs["stylistic-type-checked"].rules,
+  ...typescriptSortKeysPlugin.configs.recommended.rules,
+  "canonical/sort-keys": [
+    2,
+    "asc",
+    {
+      caseSensitive: false,
+      natural: true,
+    },
+  ],
 };
 
 /**
@@ -77,7 +88,6 @@ export const hooksRules = {
   ],
 };
 
-
 /**
  * @type {import("eslint").Linter.FlatConfig[]}
  */
@@ -102,6 +112,8 @@ const config = [
       "react-hooks": reactHooksPlugin,
       "react-refresh": reactRefreshPlugin,
       "simple-import-sort": simpleImportSort,
+      "typescript-sort-keys": typescriptSortKeysPlugin,
+      canonical: canonicalPlugin,
       prettier: prettierPlugin,
     },
     rules: {
@@ -129,6 +141,8 @@ const config = [
     plugins: {
       "@typescript-eslint": typescriptEslintPlugin,
       "simple-import-sort": simpleImportSort,
+      "typescript-sort-keys": typescriptSortKeysPlugin,
+      canonical: canonicalPlugin,
       prettier: prettierPlugin,
     },
     rules: {
