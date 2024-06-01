@@ -22,7 +22,8 @@ export const api: Api = async (
 
   if (!response.ok) errors.throw("HTTP", response);
 
-  if (schema && !Value.Check(schema, value)) errors.throw("PARSE", response);
+  if (schema && !Value.Check(schema, value))
+    errors.throw("PARSE", response, [...Value.Errors(schema, value)]);
 
   return value;
 };

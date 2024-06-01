@@ -3,12 +3,12 @@ import { type QueryFunctionContext } from "@tanstack/react-query";
 import { api } from "./utils";
 
 const Todo = Type.Object({
-  createdAt: Type.Date(),
+  createdAt: Type.String(),
   description: Type.String(),
   id: Type.Number(),
   rank: Type.Union([Type.Literal("low"), Type.Literal("high")]),
   title: Type.String(),
-  updatedAt: Type.Date(),
+  updatedAt: Type.String(),
 });
 
 export async function queryTodo({

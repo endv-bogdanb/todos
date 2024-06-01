@@ -36,7 +36,7 @@ router.route("/todos/:id").get((_, res) => {
     .status(httpStatus.OK)
     .send({
       createdAt: new Date(),
-      descritpion: "todo description",
+      description: "todo description",
       id: 3,
       rank: "high",
       title: "Todo 3",

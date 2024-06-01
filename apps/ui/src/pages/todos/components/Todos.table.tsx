@@ -1,13 +1,23 @@
 import { type FC } from "react";
+import { Link } from "react-router-dom";
 import {
+  createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import {
-  todoColumns as columns,
-  type TodosColumnHelper,
-} from "./todos.table.business";
+import { type queryTodos } from "@/http";
+
+type TodosColumnHelper = Awaited<ReturnType<typeof queryTodos>>[number];
+
+const columnHelper = createColumnHelper<TodosColumnHelper>();
+
+const columns = [
+  columnHelper.accessor("title", {
+    cell: (props) => <Link to={props.row.id}>{props.renderValue()}</Link>,
+  }),
+  columnHelper.accessor("description", {}),
+];
 
 export interface TodosTableProps {
   todos: TodosColumnHelper[];
