@@ -3,7 +3,8 @@
   "compilerOptions": {
     "paths": {
       "@/pages": ["./src/pages"],
-      "@/http": ["./src/http"]
+      "@/http": ["./src/http"],
+      "@/utils": ["./src/utils"]
     }
   },
   "include": ["src"],

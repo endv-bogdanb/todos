@@ -3,43 +3,45 @@ import httpStatus from "http-status";
 
 const router = promiseRouter();
 
-router.get("/todos", (_, res) => {
+router.route("/todos").get((_, res) => {
   return res
     .status(httpStatus.OK)
     .send([
       {
-        createdAt: new Date(),
-        descritpion: "todo description",
+        description: "todo description",
         id: 0,
-        name: "Todo",
-        rank: "low",
-        updatedAt: new Date(),
+        title: "Todo",
       },
       {
-        createdAt: new Date(),
-        descritpion: "todo description",
+        description: "todo description",
         id: 1,
-        name: "Todo 1",
-        rank: "low",
-        updatedAt: new Date(),
+        title: "Todo 1",
       },
       {
-        createdAt: new Date(),
-        descritpion: "todo description",
+        description: "todo description",
         id: 2,
-        name: "Todo 2",
-        rank: "medium",
-        updatedAt: new Date(),
+        title: "Todo 2",
       },
       {
-        createdAt: new Date(),
-        descritpion: "todo description",
+        description: "todo description",
         id: 3,
-        name: "Todo 3",
-        rank: "high",
-        updatedAt: new Date(),
+        title: "Todo 3",
       },
     ])
+    .end();
+});
+
+router.route("/todos/:id").get((_, res) => {
+  return res
+    .status(httpStatus.OK)
+    .send({
+      createdAt: new Date(),
+      descritpion: "todo description",
+      id: 3,
+      rank: "high",
+      title: "Todo 3",
+      updatedAt: new Date(),
+    })
     .end();
 });
 

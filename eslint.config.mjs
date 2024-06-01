@@ -28,7 +28,9 @@ export const baseRules = {
   "sort-vars": "off",
   "one-var": "off",
   "id-length": ["error", { "exceptions": ["_"] }],
-  "new-cap": ["error", { "capIsNewExceptions": ["Value.Check"] }],
+  "new-cap": "off",
+  "capitalized-comments": "off",
+  "multiline-comment-style": "off",
   ...prettierConfig.rules,
   "prettier/prettier": "error",
 };
