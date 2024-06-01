@@ -5,7 +5,7 @@
     "configs/*"
   ],
   "scripts": {
-    "dev": "turbo dev build:watch",
+    "dev": "turbo dev build:watch tsc-alias:watch",
     "build": "turbo build",
     "lint": "turbo lint",
     "test": "turbo test",

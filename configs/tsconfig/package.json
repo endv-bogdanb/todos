@@ -8,6 +8,7 @@
     "node.json"
   ],
   "dependencies": {
+    "tsc-alias": "1.8.10",
     "typescript": "5.4.5"
   }
 }

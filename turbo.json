@@ -9,6 +9,10 @@
       "persistent": true,
       "cache": false
     },
+    "tsc-alias:watch": {
+      "persistent": true,
+      "cache": false
+    },
     "build": {
       "outputs": ["dist/**"],
       "dependsOn": ["^build"]
