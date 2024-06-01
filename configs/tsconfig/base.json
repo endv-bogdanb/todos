@@ -41,6 +41,8 @@
     "allowUnreachableCode": true,
 
     "skipDefaultLibCheck": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    "types": ["vitest/globals"]
   }
 }

@@ -2,11 +2,13 @@
   "name": "api",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "node --watch dist",
-    "build": "tsc",
-    "build:watch": "tsc --watch",
-    "lint": "eslint . --report-unused-disable-directives --max-warnings 0"
+    "build": "tsc --project tsconfig.build.json",
+    "build:watch": "tsc --project tsconfig.build.json --watch",
+    "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
+    "test": "vitest"
   },
   "dependencies": {},
   "devDependencies": {
