@@ -6,14 +6,14 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { router } from "@/pages";
-import { errors } from "./utils";
+import { ParseError } from "./utils";
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: (count, error) => {
         const MAX_RETRIES = 3;
-        return count < MAX_RETRIES && !errors.is("PARSE", error);
+        return count < MAX_RETRIES && !ParseError.is(error);
       },
     },
   },

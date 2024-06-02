@@ -31,6 +31,7 @@ export const baseRules = {
   "new-cap": "off",
   "capitalized-comments": "off",
   "multiline-comment-style": "off",
+  "no-ternary": "off",
   ...prettierConfig.rules,
   "prettier/prettier": "error",
 };
@@ -129,6 +130,7 @@ const config = [
       ...typescriptRules,
       ...importRules,
       ...hooksRules,
+      "max-lines-per-function": "off",
     },
   },
   {

@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { type Static, Type } from "@sinclair/typebox";
 import { type QueryFunctionContext } from "@tanstack/react-query";
 import { api } from "./utils";
 
@@ -30,3 +30,23 @@ export async function queryTodos({
 }
 
 queryTodos.queryKey = ["todos"] as const;
+
+export async function createTodo(
+  todo: Pick<Static<typeof Todo>, "title" | "description" | "rank">,
+) {
+  return api("/api/todos", {
+    body: JSON.stringify(todo),
+    method: "POST",
+  });
+}
+
+createTodo.mutationKey = ["createTodo"] as const;
+
+export async function editTodo(todo: Static<typeof Todo>) {
+  return api(`/api/todos/${todo.id}`, {
+    body: JSON.stringify(todo),
+    method: "PUT",
+  });
+}
+
+editTodo.mutationKey = ["editTodo"] as const;
