@@ -15,8 +15,8 @@ export async function queryTodo({
   signal,
   queryKey,
 }: QueryFunctionContext<ReturnType<typeof queryTodo.queryKey>>) {
-  // eslint-disable-next-line no-magic-numbers
-  return api(`/api/todos/${queryKey[1].id}`, { signal }, Todo);
+  const [, { id }] = queryKey;
+  return api(`/api/todos/${id}`, { signal }, Todo);
 }
 
 queryTodo.queryKey = (id: number) => ["todo", { id }] as const;
