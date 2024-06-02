@@ -2,7 +2,7 @@ import { type FC, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { typeboxResolver } from "@hookform/resolvers/typebox";
 import { type Static, Type } from "@sinclair/typebox";
-import { type queryTodo } from "../../../http/todos";
+import { type queryTodo } from "@/http";
 
 const Schema = Type.Object({
   description: Type.String({

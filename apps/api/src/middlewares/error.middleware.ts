@@ -9,6 +9,7 @@ export const errorMiddleware = (
   _next: NextFunction,
   // eslint-disable-next-line max-params
 ) => {
+  console.log(_error)
   const status = httpStatus.INTERNAL_SERVER_ERROR;
   return res.status(status).send(httpStatus[`${status}_MESSAGE`]).end();
 };
