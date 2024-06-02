@@ -56,18 +56,35 @@ router
       return res.status(httpStatus.OK).json(todo).end();
     },
   )
-  .put(async (req, res) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unused-vars
-    const { createdAt: _, updatedAt: __, id: ___, ...body } = req.body;
+  .put(
+    validate({
+      body: Type.Object({
+        createdAt: Type.String(),
+        description: Type.String(),
+        id: Type.Number(),
+        rank: Type.Union([Type.Literal("low"), Type.Literal("high")]),
+        title: Type.String(),
+        updatedAt: Type.String(),
+      }),
+      params: Type.Object({
+        id: Type.Number(),
+      }),
+    }),
+    async (req, res) => {
+      const { description, rank, title } = req.body;
 
-    await db
-      .updateTable("todo")
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      .set(body)
-      .where("id", "=", Number(req.params.id))
-      .executeTakeFirstOrThrow();
+      await db
+        .updateTable("todo")
+        .set({
+          description,
+          rank,
+          title,
+        })
+        .where("id", "=", Number(req.params.id))
+        .executeTakeFirstOrThrow();
 
-    return res.status(httpStatus.OK).json({}).end();
-  });
+      return res.status(httpStatus.OK).json({}).end();
+    },
+  );
 
 export default router;

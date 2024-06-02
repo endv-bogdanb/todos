@@ -1,4 +1,3 @@
-/* eslint-disable max-statements */
 import { type RequestHandler } from "express";
 import { type Static, type TSchema } from "@sinclair/typebox";
 import { Value, type ValueError } from "@sinclair/typebox/value";
