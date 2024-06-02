@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createTodo, queryTodos } from "../../http/todos";
+import { createTodo, queryTodos } from "@/http";
 import { TodosForm } from "./components";
 
 export const CreateTodoPage: FC = () => {

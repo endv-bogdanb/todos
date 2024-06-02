@@ -1,7 +1,8 @@
-import { type FC } from "react";
+import { type FC, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { typeboxResolver } from "@hookform/resolvers/typebox";
 import { type Static, Type } from "@sinclair/typebox";
+import { type queryTodo } from "../../../http/todos";
 
 const Schema = Type.Object({
   description: Type.String({
@@ -15,11 +16,20 @@ const Schema = Type.Object({
   }),
 });
 
-export interface TodosFormProps {
-  onSubmit: (value: Static<typeof Schema>) => void;
-}
+export type TodosFormProps =
+  | {
+      initialValues?: never;
+      onSubmit: (value: Static<typeof Schema>) => void;
+    }
+  | {
+      initialValues: Awaited<ReturnType<typeof queryTodo>> | null;
+      onSubmit: (value: Awaited<ReturnType<typeof queryTodo>>) => void;
+    };
 
-export const TodosForm: FC<TodosFormProps> = ({ onSubmit: submit }) => {
+export const TodosForm: FC<TodosFormProps> = ({
+  onSubmit: submit,
+  initialValues,
+}) => {
   const {
     register,
     handleSubmit,
@@ -27,14 +37,22 @@ export const TodosForm: FC<TodosFormProps> = ({ onSubmit: submit }) => {
   } = useForm<Static<typeof Schema>>({
     defaultValues: {
       rank: "low",
+      ...initialValues,
     },
     // @ts-expect-error Somethings wrong with typing in typeboxResolver
     resolver: typeboxResolver(Schema),
   });
 
+  const onSubmit = useCallback(
+    (value: unknown) => {
+      submit(value as Awaited<ReturnType<typeof queryTodo>>);
+    },
+    [submit],
+  );
+
   return (
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    <form onSubmit={handleSubmit(submit)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label>
           Title

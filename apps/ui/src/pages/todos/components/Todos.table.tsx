@@ -46,6 +46,7 @@ export const TodosTable: FC<TodosTableProps> = ({ todos: data }) => {
                   )}
                 </th>
               ))}
+              <th>Actions</th>
             </tr>
           ))}
         </thead>
@@ -57,6 +58,9 @@ export const TodosTable: FC<TodosTableProps> = ({ todos: data }) => {
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
+              <td>
+                <Link to={`edit/${row.original.id}`}>Edit</Link>
+              </td>
             </tr>
           ))}
         </tbody>
