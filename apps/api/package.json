@@ -20,8 +20,7 @@
     "express": "4.19.2",
     "express-promise-router": "4.1.1",
     "http-status": "1.7.4",
-    "kysely": "0.27.3",
-    "typanion": "3.14.0"
+    "kysely": "0.27.3"
   },
   "devDependencies": {
     "@types/better-sqlite3": "7.6.10",
