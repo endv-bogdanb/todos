@@ -1,3 +1,4 @@
+import "./translations";
 import { type FC, StrictMode } from "react";
 import { RouterProvider } from "react-router-dom";
 import {

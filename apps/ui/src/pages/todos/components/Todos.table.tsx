@@ -1,4 +1,5 @@
 import { type FC } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import {
   createColumnHelper,
@@ -17,8 +18,13 @@ const columns = [
     cell: (props) => (
       <Link to={`${props.row.original.id}`}>{props.renderValue()}</Link>
     ),
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    header: (props) => props.table.options.meta?.t("todosTableTitle"),
   }),
-  columnHelper.accessor("description", {}),
+  columnHelper.accessor("description", {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    header: (props) => props.table.options.meta?.t("todosTableDescription"),
+  }),
 ];
 
 export interface TodosTableProps {
@@ -26,10 +32,13 @@ export interface TodosTableProps {
 }
 
 export const TodosTable: FC<TodosTableProps> = ({ todos: data }) => {
+  const { t } = useTranslation();
+
   const table = useReactTable({
     columns,
     data,
     getCoreRowModel: getCoreRowModel(),
+    meta: { t },
   });
 
   return (
@@ -46,7 +55,7 @@ export const TodosTable: FC<TodosTableProps> = ({ todos: data }) => {
                   )}
                 </th>
               ))}
-              <th>Actions</th>
+              <th>{t("actions")}</th>
             </tr>
           ))}
         </thead>
@@ -59,7 +68,7 @@ export const TodosTable: FC<TodosTableProps> = ({ todos: data }) => {
                 </td>
               ))}
               <td>
-                <Link to={`edit/${row.original.id}`}>Edit</Link>
+                <Link to={`edit/${row.original.id}`}>{t("edit")}</Link>
               </td>
             </tr>
           ))}
