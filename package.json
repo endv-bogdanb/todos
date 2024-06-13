@@ -12,11 +12,11 @@
     "update": "ncu --root --workspaces --interactive"
   },
   "devDependencies": {
-    "@types/node": "20.13.0",
+    "@types/node": "20.14.2",
     "concurrently": "8.2.2",
     "eslint-config-custom": "0.0.0",
     "npm-check-updates": "16.14.20",
-    "turbo": "1.13.3",
+    "turbo": "2.0.3",
     "vitest": "1.6.0"
   },
   "volta": {
