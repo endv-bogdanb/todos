@@ -1,19 +1,14 @@
 import { type FC, useCallback } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { typeboxResolver } from "@hookform/resolvers/typebox";
 import { type Static, Type } from "@sinclair/typebox";
 import { type queryTodo } from "@/http";
 
 const Schema = Type.Object({
-  description: Type.String({
-    errorMessage: "Title cannot be empty",
-    minLength: 1,
-  }),
+  description: Type.String({ minLength: 1 }),
   rank: Type.Union([Type.Literal("low"), Type.Literal("high")]),
-  title: Type.String({
-    errorMessage: "Title cannot be empty",
-    minLength: 1,
-  }),
+  title: Type.String({ minLength: 1 }),
 });
 
 export type TodosFormProps =
@@ -30,6 +25,7 @@ export const TodosForm: FC<TodosFormProps> = ({
   onSubmit: submit,
   initialValues,
 }) => {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -54,7 +50,7 @@ export const TodosForm: FC<TodosFormProps> = ({
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label>
-          Title
+          {t("todoForm.title")}
           <input {...register("title")} />
         </label>
         <div>
@@ -63,7 +59,7 @@ export const TodosForm: FC<TodosFormProps> = ({
       </div>
       <div>
         <label>
-          Description
+          {t("todoForm.description")}
           <input {...register("description")} />
         </label>
         <div>
@@ -74,14 +70,14 @@ export const TodosForm: FC<TodosFormProps> = ({
       </div>
       <div>
         <fieldset>
-          <legend>Rank</legend>
+          <legend>{t("todoForm.rank.title")}</legend>
           <label>
-            Low
+            {t("todoForm.rank.low")}
             <input type="radio" {...register("rank")} value="low" />
           </label>
           <label>
-            High
-            <input type="radio" {...register("rank")} value="high" />
+            {t("todoForm.rank.high")}
+            <input type="radio" {...register("rank")} value="highs" />
           </label>
         </fieldset>
         <div>
@@ -89,7 +85,9 @@ export const TodosForm: FC<TodosFormProps> = ({
         </div>
       </div>
       <footer>
-        <button type="submit">submit</button>
+        <button type="submit">
+          {initialValues ? t("todoForm.edit") : t("todoForm.create")}
+        </button>
       </footer>
     </form>
   );

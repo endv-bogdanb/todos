@@ -18,12 +18,14 @@ const columns = [
     cell: (props) => (
       <Link to={`${props.row.original.id}`}>{props.renderValue()}</Link>
     ),
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    header: (props) => props.table.options.meta?.t("todosTableTitle"),
+    header: (props) =>
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      props.table.options.meta?.t("todoTable.headerTitle"),
   }),
   columnHelper.accessor("description", {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    header: (props) => props.table.options.meta?.t("todosTableDescription"),
+    header: (props) =>
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      props.table.options.meta?.t("todoTable.headerDescription"),
   }),
 ];
 
@@ -55,7 +57,7 @@ export const TodosTable: FC<TodosTableProps> = ({ todos: data }) => {
                   )}
                 </th>
               ))}
-              <th>{t("actions")}</th>
+              <th>{t("todoTable.headerActions")}</th>
             </tr>
           ))}
         </thead>
