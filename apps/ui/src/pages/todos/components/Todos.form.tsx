@@ -39,7 +39,6 @@ export const TodosForm: FC<TodosFormProps> = ({
       rank: "low",
       ...initialValues,
     },
-    // @ts-expect-error Somethings wrong with typing in typeboxResolver
     resolver: typeboxResolver(Schema),
   });
 
