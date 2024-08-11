@@ -1,12 +1,29 @@
 export const en = {
   translation: {
-    actions: "Actions",
     back: "Back",
     create: "+ create",
     edit: "Edit",
-    todosTable: "todos table",
-    todosTableDescription: "Description",
-    todosTableTitle: "Title",
+    todoForm: {
+      create: "Create",
+      description: "Description",
+      edit: "Edit",
+      rank: {
+        high: "High",
+        low: "Low",
+        title: "Rank",
+      },
+      title: "Title",
+    },
+    todoTable: {
+      headerActions: "Actions",
+      headerDescription: "Description",
+      headerTitle: "Title",
+      title: "Todos table",
+    },
+    typebox: {
+      stringMinLength: "Expected string length greater or equal to {{value}}",
+      union: "Expected union value {{values}}",
+    },
     "Welcome to React": "Welcome to React and react-i18next",
   },
 } as const;
