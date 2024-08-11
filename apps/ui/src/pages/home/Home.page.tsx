@@ -6,7 +6,7 @@ export const Home: FC = () => {
   const { t } = useTranslation();
   return (
     <>
-      {t("Welcome to React")} Home page{" "}
+      {t("Welcome to React")} Home page
       <Link to="/todos">{t("todosTable")}</Link>
     </>
   );

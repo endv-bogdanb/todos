@@ -9,15 +9,15 @@
     "build": "turbo build",
     "lint": "turbo lint",
     "test": "turbo test",
-    "update": "ncu --root --workspaces --interactive"
+    "update": "ncu --workspaces --interactive"
   },
   "devDependencies": {
-    "@types/node": "20.14.2",
+    "@types/node": "20.14.12",
     "concurrently": "8.2.2",
     "eslint-config-custom": "0.0.0",
-    "npm-check-updates": "16.14.20",
-    "turbo": "2.0.3",
-    "vitest": "1.6.0"
+    "npm-check-updates": "17.0.6",
+    "turbo": "2.0.12",
+    "vitest": "2.0.5"
   },
   "volta": {
     "node": "22.2.0"
