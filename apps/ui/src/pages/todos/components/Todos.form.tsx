@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { typeboxResolver } from "@hookform/resolvers/typebox";
 import { type Static, Type } from "@sinclair/typebox";
+import { Form } from "@/components";
 import { type queryTodo } from "@/http";
 
 const Schema = Type.Object({
@@ -14,22 +15,26 @@ const Schema = Type.Object({
 export type TodosFormProps =
   | {
       initialValues?: never;
+      mutationKey: readonly string[];
       onSubmit: (value: Static<typeof Schema>) => void;
     }
   | {
       initialValues: Awaited<ReturnType<typeof queryTodo>> | null;
+      mutationKey: readonly string[];
       onSubmit: (value: Awaited<ReturnType<typeof queryTodo>>) => void;
     };
 
 export const TodosForm: FC<TodosFormProps> = ({
   onSubmit: submit,
   initialValues,
+  mutationKey,
 }) => {
   const { t } = useTranslation();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm<Static<typeof Schema>>({
     defaultValues: {
       rank: "low",
@@ -46,8 +51,11 @@ export const TodosForm: FC<TodosFormProps> = ({
   );
 
   return (
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <Form
+      mutationKey={mutationKey}
+      setError={setError}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div>
         <label>
           {t("todoForm.title")}
@@ -77,7 +85,7 @@ export const TodosForm: FC<TodosFormProps> = ({
           </label>
           <label>
             {t("todoForm.rank.high")}
-            <input type="radio" {...register("rank")} value="highs" />
+            <input type="radio" {...register("rank")} value="high" />
           </label>
         </fieldset>
         <div>
@@ -89,6 +97,6 @@ export const TodosForm: FC<TodosFormProps> = ({
           {initialValues ? t("todoForm.edit") : t("todoForm.create")}
         </button>
       </footer>
-    </form>
+    </Form>
   );
 };

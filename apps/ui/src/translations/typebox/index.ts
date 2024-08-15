@@ -1,11 +1,12 @@
 import {
   DefaultErrorFunction,
+  type ErrorFunction,
   SetErrorFunction,
   ValueErrorType,
 } from "@sinclair/typebox/errors";
 import i18next from "i18next";
 
-SetErrorFunction((error) => {
+export const translateErrorFunction: ErrorFunction = (error) => {
   switch (error.errorType) {
     case ValueErrorType.StringMinLength: {
       return i18next.t("typebox.stringMinLength", {
@@ -22,4 +23,6 @@ SetErrorFunction((error) => {
       return DefaultErrorFunction(error);
     }
   }
-});
+};
+
+SetErrorFunction(translateErrorFunction);

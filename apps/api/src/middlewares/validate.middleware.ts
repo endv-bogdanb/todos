@@ -1,6 +1,7 @@
 import { type RequestHandler } from "express";
 import { type Static, type TSchema } from "@sinclair/typebox";
 import { Value, type ValueError } from "@sinclair/typebox/value";
+import { ValidationError } from "../utils/error.util.js";
 
 export const validate =
   <
@@ -26,7 +27,7 @@ export const validate =
     );
 
     if (errors.length) {
-      throw new Error("Validation error");
+      throw new ValidationError(errors);
     }
 
     next();

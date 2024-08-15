@@ -18,5 +18,5 @@ export const CreateTodoPage: FC = () => {
     },
   });
 
-  return <TodosForm onSubmit={mutate} />;
+  return <TodosForm onSubmit={mutate} mutationKey={createTodo.mutationKey} />;
 };

@@ -26,5 +26,11 @@ export const EditTodoPage: FC = () => {
 
   if (isLoading) return null;
 
-  return <TodosForm onSubmit={mutate} initialValues={data} />;
+  return (
+    <TodosForm
+      onSubmit={mutate}
+      initialValues={data}
+      mutationKey={editTodo.mutationKey}
+    />
+  );
 };

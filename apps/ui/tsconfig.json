@@ -3,6 +3,7 @@
   "compilerOptions": {
     "paths": {
       "@/pages": ["./src/pages"],
+      "@/components": ["./src/components"],
       "@/http": ["./src/http"],
       "@/utils": ["./src/utils"]
     }
