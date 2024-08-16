@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { typeboxResolver } from "@hookform/resolvers/typebox";
 import { type Static, Type } from "@sinclair/typebox";
-import { Form } from "@/components";
+import { Form, Input, Radio, RadioGroup } from "@/components";
 import { type queryTodo } from "@/http";
 
 const Schema = Type.Object({
@@ -30,12 +30,7 @@ export const TodosForm: FC<TodosFormProps> = ({
   mutationKey,
 }) => {
   const { t } = useTranslation();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setError,
-  } = useForm<Static<typeof Schema>>({
+  const { handleSubmit, control, setError } = useForm<Static<typeof Schema>>({
     defaultValues: {
       rank: "low",
       ...initialValues,
@@ -57,40 +52,41 @@ export const TodosForm: FC<TodosFormProps> = ({
       onSubmit={handleSubmit(onSubmit)}
     >
       <div>
-        <label>
-          {t("todoForm.title")}
-          <input {...register("title")} />
-        </label>
-        <div>
-          {errors.title ? <span>{errors.title.message ?? ""} </span> : null}
-        </div>
+        <Input
+          control={control}
+          name="title"
+          label={t("todoForm.title")}
+          defaultValue={""}
+        />
       </div>
       <div>
-        <label>
-          {t("todoForm.description")}
-          <input {...register("description")} />
-        </label>
-        <div>
-          {errors.description ? (
-            <span>{errors.description.message ?? ""} </span>
-          ) : null}
-        </div>
+        <Input
+          control={control}
+          name="description"
+          label={t("todoForm.description")}
+          defaultValue={""}
+        />
       </div>
       <div>
-        <fieldset>
-          <legend>{t("todoForm.rank.title")}</legend>
-          <label>
-            {t("todoForm.rank.low")}
-            <input type="radio" {...register("rank")} value="low" />
-          </label>
-          <label>
-            {t("todoForm.rank.high")}
-            <input type="radio" {...register("rank")} value="high" />
-          </label>
-        </fieldset>
-        <div>
-          {errors.rank ? <span>{errors.rank.message ?? ""} </span> : null}
-        </div>
+        <RadioGroup
+          control={control}
+          label={t("todoForm.rank.title")}
+          name={"rank"}
+          defaultValue={"low"}
+        >
+          <Radio
+            control={control}
+            label={t("todoForm.rank.low")}
+            name={"rank"}
+            value="low"
+          />
+          <Radio
+            control={control}
+            label={t("todoForm.rank.high")}
+            name={"rank"}
+            value="high"
+          />
+        </RadioGroup>
       </div>
       <footer>
         <button type="submit">

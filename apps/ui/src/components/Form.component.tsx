@@ -1,4 +1,4 @@
-import { type FormEventHandler, type ReactNode, useEffect } from "react";
+import { type FormEvent, type ReactNode, useEffect } from "react";
 import { type FieldValues, type UseFormSetError } from "react-hook-form";
 import { useMutationState } from "@tanstack/react-query";
 import { ValidationError } from "@/utils";
@@ -6,7 +6,7 @@ import { ValidationError } from "@/utils";
 export interface FormProps<TFieldValues extends FieldValues> {
   children: ReactNode;
   mutationKey: readonly string[];
-  onSubmit: FormEventHandler<HTMLFormElement>;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => Promise<unknown>;
   setError: UseFormSetError<TFieldValues>;
 }
 
@@ -33,5 +33,6 @@ export const Form = <TFieldValues extends FieldValues>(
     }
   }, [errors, setError]);
 
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   return <form onSubmit={onSubmit}>{children}</form>;
 };

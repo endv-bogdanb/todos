@@ -66,11 +66,11 @@ export class ValidationError extends ApiError {
     this.errors = errors;
   }
 
-  public toFormErrors = <TFieldValues extends FieldValues>(
-    callback: (
-      path: FieldPath<TFieldValues> | `root.${string}` | "root",
-      message: string,
-    ) => void,
+  public toFormErrors = <
+    TFieldValues extends FieldValues,
+    TPath = FieldPath<TFieldValues> | `root.${string}` | "root",
+  >(
+    callback: (path: TPath, message: string) => void,
   ) => {
     this.errors.forEach((error) => {
       const SUBSTRING_START_AT = 1;
@@ -80,10 +80,7 @@ export class ValidationError extends ApiError {
       });
       const path = error.path
         .substring(SUBSTRING_START_AT)
-        .replace("/", "/") as
-        | FieldPath<TFieldValues>
-        | `root.${string}`
-        | "root";
+        .replace("/", ".") as TPath;
 
       callback(path, message);
     });
