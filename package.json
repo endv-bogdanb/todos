@@ -16,11 +16,11 @@
     "concurrently": "8.2.2",
     "eslint-config-custom": "0.0.0",
     "npm-check-updates": "17.0.6",
-    "turbo": "2.0.12",
+    "turbo": "2.0.14",
     "vitest": "2.0.5"
   },
   "volta": {
     "node": "22.2.0"
   },
-  "packageManager": "npm@10.7.0"
+  "packageManager": "npm@10.8.2"
 }
