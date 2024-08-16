@@ -6,6 +6,7 @@ export const ro: Resource = {
     create: "+ adăuga",
     edit: "Editează",
     todoForm: {
+      cancel: "Anulează",
       create: "Adăuga",
       description: "Descriere",
       edit: "Editează",

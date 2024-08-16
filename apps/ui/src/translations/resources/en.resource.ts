@@ -4,6 +4,7 @@ export const en = {
     create: "+ create",
     edit: "Edit",
     todoForm: {
+      cancel: "Cancel",
       create: "Create",
       description: "Description",
       edit: "Edit",

@@ -16,11 +16,13 @@ export type TodosFormProps =
   | {
       initialValues?: never;
       mutationKey: readonly string[];
+      onCancel: () => void;
       onSubmit: (value: Static<typeof Schema>) => void;
     }
   | {
       initialValues: Awaited<ReturnType<typeof queryTodo>> | null;
       mutationKey: readonly string[];
+      onCancel: () => void;
       onSubmit: (value: Awaited<ReturnType<typeof queryTodo>>) => void;
     };
 
@@ -28,13 +30,11 @@ export const TodosForm: FC<TodosFormProps> = ({
   onSubmit: submit,
   initialValues,
   mutationKey,
+  onCancel: cancel,
 }) => {
   const { t } = useTranslation();
   const { handleSubmit, control, setError } = useForm<Static<typeof Schema>>({
-    defaultValues: {
-      rank: "low",
-      ...initialValues,
-    },
+    defaultValues: { rank: "low", ...initialValues },
     resolver: typeboxResolver(Schema),
   });
 
@@ -89,6 +89,9 @@ export const TodosForm: FC<TodosFormProps> = ({
         </RadioGroup>
       </div>
       <footer>
+        <button type="button" onClick={cancel}>
+          {t("todoForm.cancel")}
+        </button>
         <button type="submit">
           {initialValues ? t("todoForm.edit") : t("todoForm.create")}
         </button>
